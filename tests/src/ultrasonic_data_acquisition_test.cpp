@@ -1,5 +1,3 @@
-
-  
   int client = 13; //The client pin
   int server = 11; //The server pin
   float pingTime; //time it takes for the server pin to send a response
@@ -22,18 +20,35 @@ void loop() {
  Serial.print("The distance is ");
  Serial.print(resultingDistance);
  Serial.print(" meters \n");
-  
+ Serial.print("Press ENTER to continue \n");
+ char c;
+ while(c != '\n'){
+    c = scanf("%d", '\n');
+ }
+ 
  digitalWrite(client,LOW); //Sets client pin as off
  delayMicroseconds(delaySeconds); //1 second delay for signal to settle
  digitalWrite(client, HIGH); //Sets client pin as on  
                              //Signal has been sent
  delayMicroseconds(delaySeconds);
  digitalWrite(client, LOW); //turns off client
-
  pingTime = pulseIn(server, HIGH); //server pin's reaction recorded in microseconds
+ Serial.print("The pingTime of the object is: ");
+ Serial.print(pingTime * 1000000);
+ Serial.print(" seconds");
+ char k;
+ while(k != '\n'){
+    k = scanf("%d", '\n');
+ }
  speedOfObject = (resultingDistance * .0254)/ pingTime * (1000000); 
+  
  Serial.print("The speed of the object is: ");
  Serial.print(speedOfObject);
  Serial.print(" m/s");
  delay(delaySeconds);
+ Serial.print("Press ENTER to continue \n");
+ char d;
+ while(d != '\n'){
+    d = scanf("%d", '\n');
+ }
 }
