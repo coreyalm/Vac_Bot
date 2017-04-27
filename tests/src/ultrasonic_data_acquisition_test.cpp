@@ -1,5 +1,5 @@
-  int client = 13; //The client pin
-  int server = 11; //The server pin
+  #define CLIENT 13 //The client pin
+  #define SERVER  11 //The server pin
   float pingTime; //time it takes for the server pin to send a response
   float speedOfObject;
   int targetDistance; //Distance between client and server pins
@@ -8,8 +8,8 @@
  void setup(){
     Serial.begin(9600); //Sets the data rate in bits per second (baud) 
                         //for serial data transmission.
-    pinMode(client,OUTPUT); //Sets trigPin as the client pin.
-    pinMode(server, INPUT); //Sets echoPin as the server Pin. INPUT reacts to the environment. In this case it is reacting to the client pin's "high" state   
+    pinMode(CLIENT,OUTPUT); //Sets trigPin as the client pin.
+    pinMode(SERVER, INPUT); //Sets echoPin as the server Pin. INPUT reacts to the environment. In this case it is reacting to the client pin's "high" state   
     
  }
  
@@ -26,13 +26,13 @@ void loop() {
     c = scanf("%d", '\n');
  }
  
- digitalWrite(client,LOW); //Sets client pin as off
+ digitalWrite(CLIENT,LOW); //Sets client pin as off
  delayMicroseconds(delaySeconds); //1 second delay for signal to settle
- digitalWrite(client, HIGH); //Sets client pin as on  
+ digitalWrite(CLIENT, HIGH); //Sets client pin as on  
                              //Signal has been sent
  delayMicroseconds(delaySeconds);
- digitalWrite(client, LOW); //turns off client
- pingTime = pulseIn(server, HIGH); //server pin's reaction recorded in microseconds
+ digitalWrite(CLIENT, LOW); //turns off client
+ pingTime = pulseIn(SERVER, HIGH); //server pin's reaction recorded in microseconds
  Serial.print("The pingTime of the object is: ");
  Serial.print(pingTime * 1000000);
  Serial.print(" seconds");
